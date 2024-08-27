@@ -6,22 +6,31 @@
 
 \begin{document}
 \maketitle
-    
-\vspace{10px}
+
 \section{SI Logistics}
     \begin{itemize}
         \item By now, you should hopefully be in the \href{https://iu.instructure.com/courses/2278911}{Math 303 SI companion course}.
         If you're not, please let me know via email or Canvas message!
         \item Fill out the \href{https://www.when2meet.com/?25969358-aRu9i}{when2meet survey} to let me know when you're free for
         SI sessions and office hours beginning next week!
-        \item Here's \href{https://asciimath.org/}{a guide to AsciiMath syntax} that you may want to bookmark. To enter "math mode"
+        \item Here's \href{https://asciimath.org/}{a guide to AsciiMath syntax} that you may want to bookmark. To enter ``math mode``
         in a MyOpenMath window (e.g. on quizzes), just surround some math text with backticks. For example,
         \verb|`[[a,b],[c,d]]`| generates a matrix $\begin{bmatrix} a & b \\ c & d \end{bmatrix}$.
         \item To my knowledge, discussion posts use Latex instead of AsciiMath, so the above should hopefully only be relevant to quizzes/exams. 
     \end{itemize}
+
 \pagebreak
-    
-\vspace{10px}
+\section{Opener/Intro Activity}
+    Before we start the session, let's get to know each other! As we go around the room, share some or all of the following:
+    \begin{enumerate}
+        \item Name, where you're from
+        \item Major, how long you've been at IU, and your current career/academic goal
+        \item Your favorite class you've taken up to this point
+        \item Would you rather live in the city, suburbs, or country? How come?
+        \item What's a favorite song or artist you've discovered recently?
+    \end{enumerate}
+
+\pagebreak
 \section{Syllabus Overview}
     \vspace{10px}
     \subsection{Homework}
@@ -63,12 +72,112 @@
         different for everyone!
         \item Post 3 will consist of finding a video related to the week's topics on YouTube and embedding it in a discussion post. Make sure no one else
         has already chosen your video (you may not get credit for this post if so)!
-        \item Posts 4 and 5 should be meaningfull responses to a classmate's post. Some ideas on meaningful replies are correcting a mistake in their
-        solution, offering an alternative solution method, or discussing an expansion on a topic covered by their problem.
+        \item Posts 4 and 5 should be meaningful responses to a classmate's post. Some ideas for meaningful replies are correcting a mistake in their
+        solution, offering an alternative solution method, or expanding on a topic covered by their problem.
     \end{itemize}
+
 \pagebreak
-    
-\vspace{10px}
-\section{hahashdsahd}
+\section{System of Equations, Geometry}
+    \begin{questions}
+        \item Use the \href{https://www.desmos.com/calculator}{Desmos Graphing Calculator} to plot the following two-variable linear systems, and describe
+        their solutions.
+        \begin{enumerate}
+            \item $\begin{cases}
+                x + y = 3 \\
+                y - x = 5
+            \end{cases}$
+            \item $\begin{cases}
+                y = 3x - 5 \\ 
+                3y -9x = - 5
+            \end{cases}$
+            \item $\begin{cases}
+                x + y = 3 \\
+                y - x = 5 \\
+                x = -1 \\
+                y + 4x = 0
+            \end{cases}$
+            \item $\begin{cases}
+                y - 2x = -4 \\
+                y = x - 2 \\
+                2y = 2x - 4 \\
+                x + y = 1
+            \end{cases}$
+        \end{enumerate}
+
+        \item Suppose you have a system of 4 equations in two variables. For each number of solutions below, describe or draw how a system with that
+        many solutions may look geometrically:
+        \begin{enumerate}
+            \item No solution
+            \item A unique solution
+            \item An infinite number of solutions
+        \end{enumerate}
+    \end{questions}
+
+\pagebreak
+\section{System of Equations, Algebraic Procedures}
+    \begin{questions}
+        \item Recall the definitions of homogeneous systems, consistent systems, and inconsistent systems. Determine whether the following statements
+        are true or false and explain why.
+        \begin{enumerate}
+            \item Homogeneous linear systems are always consistent.
+            \item A system of linear equations can have exactly three solutions.
+            \item A system of linear equations can have a solution which does not satisfy all conditions of the system.
+            \item A system of more than two linear equations in two variables cannot be consistent.
+            \item A two-variable homogeneous system may have solutions besides $(0,0)$.
+        \end{enumerate}
+
+        \vspace{20px}
+        \item Use elementary row operations and back substitution to solve the following systems (or determine it has no solutions):
+        \begin{enumerate}
+            \item $\begin{cases}
+                3x + 2y = 6 \\
+                2x + 3y = 9
+            \end{cases}$
+            \item $\begin{cases}
+                4x - 3y = 10 \\
+                \frac{1}{2}x - y = 0
+            \end{cases}$
+            \item $\begin{cases}
+                3x + y - z = 9 \\
+                2x - 2y + z = -3 \\
+                x + y + z = 7
+            \end{cases}$
+            \item $\begin{cases}
+                4x - 3y = 10 \\
+                8x - 6y = 20
+            \end{cases}$
+            \item $\begin{cases}
+                6x - 3y = 2 \\
+                3x - \frac{3}{2}y = 3
+            \end{cases}$
+            \item $\begin{cases}
+                12x - 9y = 3 \\
+                12x + y = 0 \\
+                x + y = 5
+            \end{cases}$
+        \end{enumerate}
+    \end{questions}
+
+\pagebreak
+\section{Closing - Informal Quiz}
+    \begin{questions}
+        \item Determine whether the following statements are true or false:
+        \begin{enumerate}
+            \item A linear system cannot have more than three variables.
+            \item A linear system in two variables and consisting of 4 equations can be consistent.
+            \item Inverting the sign on each term of a linear equation is a valid row operation.
+            \item $(0,0)$ is always a solution of a two-variable homogeneous linear system.
+        \end{enumerate}
+        
+        \item Is the following system of equations a linear system? Why or why not?
+        $$\begin{cases}
+            3x^2 + 2y^2 = 4 \\
+            4x + 3y = -1
+        \end{cases}$$
+
+        \item Suppose a three-variable linear homogeneous system is known to have additional solution(s) beyond $(0,0,0)$. How
+        many solutions to the system will there be?
+    \end{questions}
+
 
 \end{document}
