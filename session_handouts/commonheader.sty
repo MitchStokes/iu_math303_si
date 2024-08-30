@@ -252,3 +252,9 @@
 \def\>{\right\rangle}
 % For lemmas
 \newtheorem{lemma}{Lemma}
+
+\newenvironment{amatrix}[1]{%
+    \left[\begin{array}{@{}*{#1}{c}|c@{}}
+            }{%
+        \end{array}\right]
+}
