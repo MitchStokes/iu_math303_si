@@ -1,0 +1,203 @@
+\documentclass[11pt]{exam}
+\usepackage{../commonheader}
+\usepackage{graphicx}
+
+\title{Identity Matrices, Inverses, LU Factorization}
+\date{Week 3, Session 1}
+
+\begin{document}
+\maketitle
+
+\section{Pop Quiz: Content so far...}
+    \begin{questions}
+        \item Perform the following matrix multiplication:
+        $$\begin{bmatrix} 1 & 2 \\ 4 & 5 \end{bmatrix} \begin{bmatrix} -2 & -4 \\ -4 & 3 \end{bmatrix}$$
+
+        \item Are the following matrices symmetric? Skew symmetric?
+
+        $$\begin{bmatrix} 0 & 2 & -1 \\ 2 & 0 & 4 \\ 1 & -4 & 0\end{bmatrix},
+        \begin{bmatrix} 0 & 2 & -1 \\ 2 & 0 & 4 \\ 1 & -4 & 0\end{bmatrix},
+        \begin{bmatrix} 2 & 4 & 11 \\ 4 & 2 & 4 \\ 11 & 4 & 2 \end{bmatrix}$$
+
+        \item What are the ranks of the following linear systems (excluding the augmented column)? Number of solutions?
+        
+        $$\begin{amatrix}{3} 1 & 0 & 2 & 3 \\ 0 & 1 & 4 & 4 \\ 0 & 0 & 0 & 0 \end{amatrix},
+        \begin{amatrix}{3} 1 & 0 & 0 & 2 \\ 0 & 1 & 0 & -34 \\ 0 & 0 & 1 & 15 \end{amatrix},
+        \begin{amatrix}{3} 2 & 0 & 5 & 6 \\ 0 & 4 & 8 & 17 \\ 0 & 0 & 0 & 1 \end{amatrix}$$
+
+    \end{questions}
+
+\pagebreak
+\section{The Identity Matrix and Inverses}
+    
+    \vspace{20px}
+    \subsection{Identity Matrices}
+
+    The identity matrix $I_n$ is the $n \times n$ \textit{square} matrix consisting of ones down the main diagonal, and zeroes elsewhere.
+
+    We say that $I_n$ is defined by $I_{ij} = \delta_{ij}$, where:
+    $$\delta_{ij} = \begin{cases} 1 & i = j \\ 
+                                  0 & i \neq j \end{cases}$$
+    In words, the $ij$-th element of the identity matrix (the element in the $i$th row and $j$th column) is 1 if it is along the main diagonal,
+    where $i = j$, and 0 otherwise.
+
+    \begin{questions}
+        \item Identify which of the following matrices are identity matrices:
+        
+        $$\begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{bmatrix},
+        \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 0 \end{bmatrix},
+        \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix},
+        \begin{bmatrix} 1 \end{bmatrix}$$
+    \end{questions}
+
+    The identity matrix has the special property that for any $m \times n$ matrix $A$, $AI_n = A$ and $I_mA = A$.
+
+    Note that we use $I_n$ in one direction and $I_m$ in the other; why might this be?
+
+    \pagebreak
+    \subsection{Matrix Inverse}
+
+    The \textit{inverse} $A^{-1}$ of an $n \times n$ \textit{square} matrix is a matric such that:
+    $$AA^{-1} = A^{-1}A = I_n$$
+
+    Note: It is not necessarily true that an inverse matrix exists at all for any particular choice of $A$! However, if such an inverse does
+    exist, it is \textit{unique}. That is, there cannot be multiple distinct matrices which satisfy the above definition of an inverse matrix.
+
+    \vspace{10px}
+    \begin{questions}
+        \item Let $A = \begin{bmatrix} 1 & 1 \\ 1 & 2 \end{bmatrix}$. Show that $\begin{bmatrix} 2 & -1 \\ -1 & 1 \end{bmatrix}$ is the inverse of $A$.
+    \end{questions}
+
+    \vspace{20px}
+    \subsection{Finding an Inverse}
+    Suppose we have a $2 \times 2$ matrix $A = \begin{bmatrix} 1 & 1 \\ 1 & 2 \end{bmatrix}$. When searching for $A^{-1}$, what we're
+    trying to do is find another matrix satisfying the following:
+
+    $$\begin{bmatrix} 1 & 1 \\ 1 & 2 \end{bmatrix}\begin{bmatrix} x & z \\ y & w \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$$
+
+    Live demo: solve for the above inverse via multiplication.
+
+    It turns out that there's a simple algorithm for finding the inverse. Simply construct the augmented matrix
+    $\begin{amatrix}{1} A & I \end{amatrix}$ and do row operations to reduce the $A$ side to $I$, such that the augmented matrix looks like
+    $\begin{amatrix}{1} I & B \end{amatrix}$. If it's impossible to reduce $A$ to $I$ via row operations, then there is no inverse.
+
+    Live demo: solve for the same inverse using the augmented matrix method.
+
+    \begin{questions}
+        \item Using the augmented matrix method, find the inverses of the following matrices, or state that one does not exist:
+        $$\begin{bmatrix} 2 & 1 \\ 7 & 4 \end{bmatrix},
+          \begin{bmatrix} 1 & 2 & 2 \\ 1 & 0 & 2 \\ 2 & 2 & 4 \end{bmatrix},
+          \begin{bmatrix} 1 & -1 & 1 \\ 1 & 1 & 1 \\ 1 & 2 & 4 \end{bmatrix}$$
+    \end{questions}
+
+
+    \pagebreak
+    \subsection{Solving Systems Using the Inverse}
+    Suppose we have a linear system of the form $A\vec{x} = \vec{b}$, and suppose $A$ has an inverse.
+
+    Then we can obtain the following expression for the solution of the system, $\vec{x}$:
+    $$(A^{-1})A\vec{x} = A^{-1}\vec{b} \text{ (multiply both sides on the left by }A^{-1})$$
+    $$(A^{-1}A)\vec{x} = A^{-1}\vec{b} \text{ (use the associate property of matrices }A^{-1})$$
+    $$I\vec{x} = A^{-1}\vec{b} \text{ (replace the product with the identity matrix)}$$
+    $$\boxed{\vec{x} = A^{-1} \vec{b}} \text{ (the identity matrix vanishes)}$$
+
+    \begin{questions}
+        \item Solve the following system of equations using the inverse method above:
+        $$x + z = 1$$
+        $$x - y + z = 3$$
+        $$x + y - z = 2$$
+    \end{questions}
+
+    \vspace{20px}
+    \subsection{Miscellaneous Properties of the Inverse}
+    Let $A, B$, and $A_i$ for $i \in 1 \dots k$ be $n \times n$ matrices. Then:
+    \begin{enumerate}
+        \item If $A$ is invertible, then $(A^T)^{-1} = (A^{-1})^T$.
+        \item If $A$ and $B$ are invertible, then $AB$ is invertible and $(AB)^{-1} = B^{-1}A^{-1}$.
+        \item If $A_1, A_2, \dots A_k$ are invertible, then the product of such matrices is invertible, and
+        $(A_1 A_2 \dots A_k)^{-1} = A_k^{-1} A_{k-1}^{-1} \dots A_2^{-1} A_1^{-1}$. That is, the inverse of a product sequence of matrices
+        is the same as the reversed-order product sequence of those matrices' inverses. 
+    \end{enumerate}
+
+    Let $A$ be an $n \times n$ matrix and $I_n$ the identity matrix. Then:
+    \begin{enumerate}
+        \item $I$ is invertible and $I^{-1} = I$.
+        \item If $A$ is invertible then so is $A^{-1}$, and $(A^{-1})^{-1} = A$.
+        \item Of $A$ is invertible then so is $A^k$, and $(A^k)^{-1} = (A^{-1})^k$. That is, the inverse of some power of a matrix is
+        the same as the matrix's inverse raised to the same power.
+        \item If $A$ is invertible and $p$ is a nonzero real number, then $pA$ is inveritble and $(pA)^{-1} = \dfrac{1}{p}A^{-1}$.
+    \end{enumerate}
+
+\pagebreak
+\section{LU Factorization}
+    \subsection{Finding LU Factorizations}
+    Sometimes, we can write a matrix in its \textit{LU Factorization} form.
+    For a matrix $A$, the LU Factorization is the product of two matrices $L,U$ such that $A = LU$.
+
+    $L$ is a \textit{lower triangular} matrix where the main diagonal consists of all 1s and everything above the main diagonal is 0.
+    (Live demo: show an example)
+
+    $U$ is a \textit{upper triangular} matrix which only needs to have 0s below the main diagonal. The main diagonal and all entries above it can
+    be any number. (Live demo: show an example)
+
+    The easiest method for finding an LU Factorization is the \textit{multiplier method}. We'll demonstrate this with the following example:
+    $$A = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 3 & 1 \\ -2 & 3 & -2 \end{bmatrix}$$
+
+    First, write $A$ as the product of the identity matrix and itself:
+    $$A = I_nA = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} 1 & 2 & 3 \\ 2 & 3 & 1 \\ -2 & 3 & -2 \end{bmatrix}$$
+
+    Next, we'll row-reduce the right matrix until it is in \textit{upper triangular} form. This is similar to reducing it to RREF, except we don't need
+    to cancel the entries above the main diagonal! \textbf{Note: You cannot use the row interchange or row-multiplication operations during this process,
+    only the row-multiple addition operation}.
+    
+    Each time we perform a row-multiple addition operation, we'll update the left matrix with the \textit{negative} of the multiple we used. For example,
+    consider wanting to eliminate the boxed entry below:
+    $$\begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}
+      \begin{bmatrix} 1 & 2 & 3 \\ \boxed{2} & 3 & 1 \\ -2 & 3 & -2 \end{bmatrix}$$
+    We'll need to perform the row-multiple addition operation $R_2 = R_2 + (-2)R_1$ to cancel out the 2. As we perform that operation, we'll update the
+    corresponding entry in the left matrix with $-(-2) = 2$:
+    $$\begin{bmatrix} 1 & 0 & 0 \\ \boxed{2} & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}
+      \begin{bmatrix} 1 & 2 & 3 \\ 0 & -1 & -5 \\ -2 & 3 & -2 \end{bmatrix}$$
+    Don't forget to also update the other elements in the row (besides the one we're cancelling)!
+    
+    \pagebreak
+    We'll repeat this process for any remaining entries under the main diagonal (boxed entries below):
+    $$\begin{bmatrix} 1 & 0 & 0 \\ 2 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}
+      \begin{bmatrix} 1 & 2 & 3 \\ 0 & -1 & -5 \\ \boxed{-2} & \boxed{3} & -2 \end{bmatrix}$$
+
+    Using the same method, we'd eventually arrive at the LU Factorization, where $L$ is the left matrix and $U$ is the right matrix:
+    $$\begin{bmatrix} 1 & 0 & 0 \\ 2 & 1 & 0 \\ -2 & -7 & 1 \end{bmatrix}
+      \begin{bmatrix} 1 & 2 & 3 \\ 0 & -1 & -5 \\ 0 & 0 & -31 \end{bmatrix}$$
+
+    \begin{questions}
+        \item Find an LU Factorization for $A = \begin{bmatrix} 2 & 4 & 2 \\ 1 & 1 & 2 \\ -1 & 0 & 2 \end{bmatrix}$
+    \end{questions}
+
+    \vspace{20px}
+    \subsection{Using LU Factorizations to Solve Systems}
+    Suppose we have a linear system $A \vec{x} = \vec{b}$ where $A = LU$. Then we can rewrite the system as $(LU) \vec{x} = \vec{b}$.
+    Since matrix multiplication is associative, it is also valid to say $L(U \vec{x}) = \vec{b}$. If we set a new
+    variable $y = U \vec{x}$, then we can solve two systems consectuviely to solve for $\vec{x}$:
+    $$L \vec{y} = \vec{b}$$
+    $$U \vec{x} = \vec{y}$$
+    This might seem like more work at first, but it turns out that solving systems where the matrix is \textit{triangular} (as $L$ and $U$ are)
+    tends to be pretty convenient!
+
+    \begin{questions}
+        \item Solve the following system by LU Factorization:
+        $$\begin{bmatrix} 1 & 2 & 3 & 2 \\ 4 & 3 & 1 & 1 \\ 1 & 2 & 3 & 0 \end{bmatrix}
+          \begin{bmatrix} x \\ y \\ z \\ w \end{bmatrix} =
+          \begin{bmatrix} 1 \\ 2 \\ 3 \end{bmatrix}$$
+    \end{questions}
+
+\pagebreak
+\section{Closing}
+    \begin{questions}
+        \item Find the inverse of the matrix $A = \begin{bmatrix} 2 & 3 \\ 1 & 2 \end{bmatrix}$
+        \item Suppose we have a system $A \vec{x} = \vec{b}$, where $A$ is invertible. Solve for $\vec{x}$ in terms of $A^{-1}$.
+        \item Can a $4 \times 3$ matrix have an inverse?
+    \end{questions}
+
+
+
+\end{document}
