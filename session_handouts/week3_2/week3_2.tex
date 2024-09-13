@@ -1,0 +1,133 @@
+\documentclass[11pt]{exam}
+\usepackage{../commonheader}
+\usepackage{graphicx}
+
+\title{Determinants}
+\date{Week 3, Session 2}
+
+\begin{document}
+\maketitle
+
+\section{Pop quiz: Content so Far}
+    
+    \vspace{20px}
+    \begin{questions}
+        \item Find the inverse and an LU factorization of the following matrix:
+        $$\begin{bmatrix} 2 & 3 \\ -1 & 4 \end{bmatrix}$$
+        \item Find the inverse and an LU factorization of the following matrix:
+        $$\begin{bmatrix} 1 & 2 & 3 \\ 2 & 3 & 4 \\ 3 & 4 & 5 \end{bmatrix}$$
+    \end{questions}
+
+\pagebreak
+\section{Determinants}
+    
+    \vspace{20px}
+    \subsection{Determinant of a $2 \times 2$ Matrix}
+    For a $2 \times 2$ matrix $A$, the determinant $det(A)$ can be easily found:
+
+    Let $A = \begin{bmatrix}a & b \\ c & d\end{bmatrix}$. Then $det(A) = ad - bc$.
+
+    \begin{questions}
+        \item Find the determinant of the following $2 \times 2$ matrices:
+        $$\begin{bmatrix} -1 & 3 \\ 4 & 2 \end{bmatrix}, \begin{bmatrix} 12 & 2 \\ 4 & 0 \end{bmatrix}, \begin{bmatrix} 2 & 4 \\ 3 & 6\end{bmatrix}$$
+        \item When will the determinant of a $2 \times 2$ matrix be 0? That is, which values of $a,b,c,d$ would cause the determinant to be 0?
+    \end{questions}
+
+    \vspace{20px}
+    \subsection{Matrix Minors}
+    The $ij$th minor of a matrix $A$, denoted $minor(A)_{ij}$, is the determinant of the resulting matrix when you delete the $i$th row and $jth$ column
+    from the matrix. For example:
+
+    Let $A = \begin{bmatrix} 1 & \boxed{2} & \boxed{3} \\ 4 & 3 & 2 \\ 3 & \boxed{2} & \boxed{1} \end{bmatrix}$.
+    
+    Then $minor(A)_{21}$ is the determinant of the $2 \times 2$ matrix left over when you delete the 2nd row and 1st column from $A$. This leaves
+    the $2 \times 2$ matrix consisting of the boxed elements above. We can find $minor(A)_{21}$ by taking the determinant of this leftover $2 \times 2$
+    matrix:
+    $$minor(A)_{21} = det(\begin{bmatrix} 2 & 3 \\ 2 & 1 \end{bmatrix}) = (2)(1) - (3)(2) = -4$$
+
+    \begin{questions}
+        \item Let $A = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 3 & 2 \\ 3 & 2 & 1 \end{bmatrix}$. Find the following:
+        \begin{enumerate}[a.]
+            \item $minor(A)_{11}$
+            \item $minor(A)_{12}$
+        \end{enumerate}
+    \end{questions}
+
+    \pagebreak
+    \subsection{Cofactors}
+    Similar to minors, the $ij$th cofactor of a matrix $A$ is denoted $cof(A)_{ij}$, and is defined as:
+    $$cof(A)_{ij} = (-1)^{i+j} minor(A)_{ij}$$
+    First, notice that $(-1)^{i+j}$ can only be two values, $1$ or $-1$. Additionally, it'll be $1$ when $i + j$ is even, and $-1$ when $i + j$ is odd.
+
+    So the cofactor of $A$ at the $ij$th position is just the minor at that position, with the sign flipped if $i + j$ are odd.
+
+    \begin{questions}
+        \item Let $A = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 3 & 2 \\ 3 & 2 & 1 \end{bmatrix}$. Find the following:
+        \begin{enumerate}[a.]
+            \item $cof(A)_{31}$
+            \item $cof(A)_{22}$
+        \end{enumerate}
+    \end{questions}
+
+    \vspace{20px}
+    \subsection{Determinant of a $3 \times 3$ Matrix}
+    Now that we've learned cofactors, we can find the determinant of a $3 \times 3$ matrix using a process called \textbf{Laplace Expansion}, or
+    \textbf{Cofactor Expansion}. I think the easiest way to learn this is through an example.
+
+    Consider the same matrix we've used so far, $A = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 3 & 2 \\ 3 & 2 & 1 \end{bmatrix}$.
+
+    First, choose a row or column to \textit{expand along}. It doesn't matter which row or column you expand along, you'll always get the same answer!
+    For this example, let's choose the first row.
+    $$A = \begin{bmatrix} \boxed{1} & \boxed{2} & \boxed{3} \\ 4 & 3 & 2 \\ 3 & 2 & 1 \end{bmatrix}$$
+
+    $det(A)$ is equal to the sum of $a_{ij} cof(A)_{ij}$ for all elements in the row/column you expand along. For this specific example,
+    this would be:
+    $$det(A) = 1 \cdot cof(A)_{11} + 2 \cdot cof(A)_{12} + 3 \cdot cof(A)_{13}$$
+    Now that we have an expression for $det(A)$, let's solve the problem as a group!
+
+    \pagebreak
+    It turns out that many matrices have certain rows or columns that are "easier" to expand along. For example:
+    $$\begin{bmatrix} 1 & 0 & 0 \\ 2 & 3 & -4 \\ 2 & 5 & 1 \end{bmatrix}$$
+    In this example, you could choose to expand along the 1st row and only need to calculate one $2 \times 2$ determinant.
+    This is completely fine to do, because you will \textit{always get the same determinant regardless of which row/column you choose}.
+
+    We can expand this same proces to arbitrary $n \times n$ square matrices. We can simply choose a row/column to expand along, then find the cofactors
+    of each element. In the case of a $4 \times 4$ matrix, our "minor" matrices that we get from excluding a row and column would be $3 \times 3$.
+    There's nothing wrong with that; it just means that for each cofactor we'd also need to use Laplace Expansion on each created $3 \times 3$ matrix.
+
+    \vspace{20px}
+    \begin{questions}
+        \item Find $det(\begin{bmatrix} 1 & 0 & 2 \\ 3 & 4 & -1 \\ 2 & 5 & 2 \end{bmatrix})$
+        \item Find $det(\begin{bmatrix} 1 & 1 & 1 \\ 1 & 1 & 1 \\ 1 & 1 & 1 \end{bmatrix})$
+        \item Find $det(\begin{bmatrix} 1 & 0 & 0 & 0 \\ 0 & 3 & 4 & 5 \\ 0 & 2 & -1 & 3 \\ 0 & 5 & 1 & 1 \end{bmatrix})$
+    \end{questions}
+
+    \pagebreak
+    \subsection{Determinants of Triangular Matrices}
+    For upper or lower triangular matrices, we can use a shortcut to find determinants.
+
+    Let $A$ be an upper or lower diagonal matrix. Then $det(A)$ is the product of the elements along the main diagonal.
+
+    For example, $det(\begin{bmatrix} 2 & 3 & 4 \\ 0 & -1 & 2 \\ 0 & 0 & 3 \end{bmatrix}) = (2)(-1)(3) = -6$
+
+    \begin{questions}
+        \item Find determinants of the following matrices:
+        $$\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix},
+        \begin{bmatrix} 2 & 3 \\ 0 & 5 \end{bmatrix},
+        \begin{bmatrix} 2 & 1 & -98 \\ 0 & 24 & 56 \\ 0 & 0 & -1 \end{bmatrix}$$
+    \end{questions}
+
+    \pagebreak
+    \section{Closing}
+    Let's finish off with some practice questions!
+    \begin{questions}
+        \item Using the methods we've learned so far, find the determinants of the following matrices:
+        $$\begin{bmatrix} 2 & 4 \\ 0 & 6 \end{bmatrix},
+          \begin{bmatrix} -1 & 3 \\ 4 & 2 \end{bmatrix},
+          \begin{bmatrix} 1 & 0 & 2 \\ 4 & 5 & 6 \\ -1 & -2 & 4 \end{bmatrix}$$
+        \item \textbf{Challenge question:} Suppose $A$ is a $3 \times 3$ matrix in RREF with $rank(A) = 3$. What is its determinant?
+        \item \textbf{Challenge question:} Suppose $A$ is a $3 \times 3$ matrix in RREF with $rank(A) = 2$. What is its determinant?
+    \end{questions}
+
+
+\end{document}
