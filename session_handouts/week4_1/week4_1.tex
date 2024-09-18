@@ -1,0 +1,102 @@
+\documentclass[11pt]{exam}
+\usepackage{../commonheader}
+\usepackage{graphicx}
+
+\title{Midterm Exam Review}
+\date{Week 4, Session 1}
+
+\begin{document}
+\maketitle
+
+\section{Exam Practice}
+    
+    \vspace{20px}
+    \subsection{Linear Systems and Matrices}
+    \begin{questions}
+        \item Suppose a linear system has one solution. Is it consistent or inconsistent?
+        \item Are the linear systems represented by the following augmented matrices consistent or inconsistent?
+        $$\begin{amatrix}{2} 2 & 1 & 3 \\ 0 & 1 & 3\end{amatrix},
+          \begin{amatrix}{3} 2 & -1 & 5 & 5 \\ 0 & 1 & 3 & 5 \\ 0 & 0 & 0 & 1 \end{amatrix}$$
+        \item For what value of $k$ will the linear system below be consistent?
+        $$\begin{cases} x - 6y = -5 \\ x - 4y = k \\ 3x - 9y = -3 \end{cases}$$
+        \item If $A = \begin{bmatrix} x & 4 \\ -5 & y \end{bmatrix}$ and $A^2 = \begin{bmatrix} 29 & 24 \\ -30 & -19 \end{bmatrix}$,
+        what are the values of $x$ and $y$?
+        \item Reduce the following matrices to row-echelon form:
+        $$\begin{bmatrix} 1 & -5 & 3 \\ -4 & 2 & -3 \end{bmatrix},
+          \begin{bmatrix} 3 & 4 & 2 \\ 6 & 8 & 4 \\ 6 & 3 & 2 \end{bmatrix}$$
+    \end{questions}
+
+    \vspace{20px}
+    \subsection{Homoegeneous Systems}
+    \begin{questions}
+        \item Build a $2 \times 2$, non-zero coefficient matrix such that the vector $\begin{bmatrix}2 \\ 4\end{bmatrix}$ is a solution
+        to the corresponding homogeneous system.
+        \item Suppose the coefficient matrix for an 11-variable homogeneous system has rank 10. How many solutions will the homogeneous
+        system have?
+    \end{questions}
+
+    \pagebreak
+    \subsection{Inverses, Transposes, and LU Decomposition}
+    \begin{questions}
+        \item Find the inverse (if one exists) for the following matrices:
+        $$\begin{bmatrix} 1 & -3 \\ 5 & -14 \end{bmatrix}, \begin{bmatrix} 2 & 0 \\ 5 & 0 \end{bmatrix}, \begin{bmatrix} 7 & 2 \\ -11 & -3 \end{bmatrix}$$
+        \item Find the tranpositions of the following matrices:
+        $$\begin{bmatrix} 2 & 4 \\ 3 & 1 \end{bmatrix}, \begin{bmatrix} -2 & 0 & -3 \\ 4 & 1 & -1 \\ 1 & 0 & 1 \end{bmatrix}$$
+        \item Are the following matrices symmetric? Skew symmetric?
+        $$\begin{bmatrix} 1 & 2 \\ 2 & 1 \end{bmatrix},
+          \begin{bmatrix} 0 & 2 \\ -2 & 0 \end{bmatrix},
+          \begin{bmatrix} 1 & 2 & 3 \\ 2 & 4 & 5 \\ 3 & 5 & 3 \end{bmatrix}$$
+        \item Find an LU decomposition for the following matrices:
+        $$\begin{bmatrix} -6 & 9 \\ -7 & 9 \end{bmatrix}, \begin{bmatrix} 10 & -4 \\ -4 & 6 \end{bmatrix}$$
+    \end{questions}
+
+    \vspace{20px}
+    \subsection{Determinants}
+    \begin{questions}
+        \item Find the determinants of the following $2 \times 2$ matrices:
+        $$\begin{bmatrix} 4 & 3 \\ -3 & 3 \end{bmatrix}, \begin{bmatrix} 2 & 1 \\ 3 & -3 \end{bmatrix}, \begin{bmatrix} 2 & 3 \\ 0 & -1 \end{bmatrix}$$
+        \item Find the determinants of the following $3 \times 3$ matrices:
+        $$\begin{bmatrix} 1 & 2 & 0 \\ 3 & 5 & -2 \\ 4 & 2 & 0 \end{bmatrix}, \begin{bmatrix} 1 & 2 & 0 \\ 0 & 5 & 4 \\ 0 & 0 & -2 \end{bmatrix}$$
+    \end{questions}
+
+    \pagebreak
+    \subsection{Cramer's Rule}
+    We'll practice this more in the second session of this week, but it's something that may show up on your exam, so let's practice it!
+
+    Suppose we have a linear system of the form $A\vec{x} = \vec{b}$, where $A$ is a square invertible matrix.
+    Then $\vec{x} = \begin{bmatrix} x_1 & x_2 & \dots & x_n \end{bmatrix}^T$ and $x_i = \dfrac{det(A_i)}{det(A)}$, where $A_i$ is the matrix
+    formed by replacing the $i$th column of $A$ with $\vec{b}$.
+
+    As an example, consider the system defined by $A = \begin{bmatrix} -1 & -3 \\ 3 & 4 \end{bmatrix},
+    \vec{b} = \begin{bmatrix} 11 \\ -13 \end{bmatrix}$.
+
+    Then $A_1 = \begin{bmatrix} 11 & -3 \\ -13 & 4 \end{bmatrix}$ ($A$ but with its first column replaced by $\vec{b}$), \\
+    and $A_2 = \begin{bmatrix} -1 & 11 \\ 3 & -13 \end{bmatrix}$ ($A$ but with its second column replaced by $\vec{b}$).
+
+    Then $x_1 = \dfrac{det(A_1)}{det(A)}$ and $x_2 = \dfrac{det(A_2)}{det(A)}$. What are these determinants, and subsequently the solution to the
+    system, $\vec{x}$?
+
+    \vspace{20px}
+    \begin{questions}
+        \item Use Cramer's rule to solve the following system:
+        $$\begin{cases}
+            4x + 5y = 23 \\
+            -x + 2y = 4
+        \end{cases}$$
+    \end{questions}
+
+    \vspace{20px}
+    \subsection{Properties of Determinants}
+    \begin{questions}
+        \item Suppose $A$ and $B$ are invertible $2 \times 2$ matrices such that $det(A) = 2$ and $det(B) = 3$. Then find the following determinants:
+        \begin{enumerate}[a.]
+            \item $det(AB)$
+            \item $det(A^T)$
+            \item $det(A^{-1})$
+            \item $det(2A)$
+            \item $det(B^{-1}A^{-1})$
+        \end{enumerate}
+    \end{questions}
+
+
+\end{document}
