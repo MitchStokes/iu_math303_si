@@ -1,0 +1,87 @@
+\documentclass[11pt]{exam}
+\usepackage{../commonheader}
+\usepackage{graphicx}
+
+\title{Subspaces, Row/Column/Null Spaces}
+\date{Week 5, Session 2}
+
+\begin{document}
+\maketitle
+
+\section{Subspaces}
+    
+    \vspace{20px}
+    \subsection{Subspaces}
+    A collection of vectors $V$ is a  of $\mathbb{R}^n$ if whenever $a$ and $b$ are scalars and $\vec{u}$ and $\vec{v}$ are
+    vectors in $V$, the linear combination $a\vec{u} + b\vec{v}$ is also in $V$.
+
+    Another definition of a subspace $V$ is that it's a subspace of $\mathbb{R}^n$ if there exists a set of vectors that span it.
+    For example, $V = span \{ \vec{u_1}, \dots, \vec{u_k} \}$.
+
+    Additionally, if $\vec{u_1}, \dots, \vec{u_k} \in W$ where $W$ is another subspace of $\mathbb{R}^n$, then $V \subseteq W$.
+
+    \vspace{20px}
+    \subsection{Bases}
+    A basis for a subspace $V$ is a linearly independent set of vectors $\{ \vec{u_1}, \dots, \vec{u_k} \}$ such that
+    $V = span \{ \vec{u_1}, \dots, \vec{u_k} \}$.
+
+    The standard basis of $\mathbb{R}^3$ is $\{ [1,0,0]^T, [0,1,0]^T, [0,0,1]^T \}$. You can create a standard basis for any $\mathbb{R}^n$
+    using a similar pattern with more vectors!
+
+    A given subspace can have many bases; a basis just needs to span the entire subspace. For example, you could span $\mathbb{R}^3$ using its standard
+    basis above, but you could come up with infinitely more sets of three vectors that span the entire vector space!
+    
+    It turns out that bases for the same subspace must always consist of the same number of vectors though, regardless of which vectors those are.
+    The number of vectors in a basis of a subspace is called its \textit{dimension}, and is denoted $dim(V)$.
+
+    \begin{questions}
+        \item Consider the following set of vectors:
+        $$ V = \left\{ \begin{bmatrix} a \\ b \\ c \\ d \end{bmatrix} \in \mathbb{R}^4 : a - b = d - c \right\} $$
+        Show that $V$ is a subspace, find a basis of it, and state $dim(V)$.
+    \end{questions}
+
+    A couple more theorems:
+    \begin{enumerate}
+        \item If we have an n-dimension set of linearly independent vectors in $\mathbb{R}^n$, then this set of vectors is a basis for $\mathbb{R}^n$.
+        \item Conversely, suppose an m-dimension set of vectors spans $\mathbb{R}^n$. Then $m$ must be \textit{at least} $n$, $m \geq n$.
+        \item If an n-dimension set of vectors spans $\mathbb{R}^n$, then the set of vectors is linearly independent.
+        \item If $V$ is a subspace of $\mathbb{R}^n$, then its basis must have $dim(V) \leq n$.
+    \end{enumerate}
+
+\vspace{40px}
+\section{Row Space, Column Space, Null Space}
+    
+    \vspace{20px}
+    \subsection{Row Space and Column Space}
+    The \textit{column space} of a matrix $A$ is the span of its columns. The \textit{row space} of $A$ is the span of its rows.
+    Performing the elementary operations on a matrix doesn't change its row/column space.
+
+    When a matrix is reduced to RREF, the nonzero rows of $A$ form a basis for its row space, $row(A)$.
+
+    The rank of a matrix is the same as the dimension of its row space (remember, these are the number of vectors in its basis)!
+    $$rank(A) = dim(row(A))$$
+
+    TL;DR: When solving for row space, reduce the matrix to RREF, and the row space will be the span of the nonzero rows in RREF form.
+    When solving for column space, reduce the matrix to RREF and determine which columns are pivots. The column space will be the span of the
+    same-numbered columns in the \textit{original} matrix.
+
+    \begin{questions}
+        \item Find the rank of the following matrix and describe its column and row spaces:
+        $$A = \begin{bmatrix} 1 & 2 & 1 & 3 & 2 \\ 1 & 3 & 6 & 0 & 2 \\ 3 & 7 & 8 & 6 & 6 \end{bmatrix}$$
+
+        \item Find the rank of the following matrix and describe its column and row spaces:
+        $$A = \begin{bmatrix} 1 & 2 & 1 & 3 & 2 \\ 1 & 3 & 6 & 0 & 2 \\ 1 & 2 & 1 & 3 & 2 \\ 1 & 3 & 2 & 4 & 0 \end{bmatrix}$$
+    \end{questions}
+
+    \pagebreak
+    \subsection{Null Space/Kernel}
+    The \textit{null space} or \textit{kernel} of a matrix is the set of vectors which carry the matrix to 0 via multiplication. In other words:
+    $$null(A) = \{ \vec{x}: A \vec{x} = \vec{0} \}$$
+    What does this remind us of?
+
+    The dimension of the null space of a matrix is called the \textit{nullity}, denoted $dim(null(A))$.
+
+    Additionally, the rank and nullity of a matrix will add up to its number of columns! This is exactly how the rank + number of basic solutions
+    in a homogeneous system adds up to the number of columns.
+
+\end{document}
