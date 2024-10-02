@@ -1,0 +1,87 @@
+\documentclass[11pt]{exam}
+\usepackage{../commonheader}
+\usepackage{graphicx}
+
+\title{Orthogonality}
+\date{Week 6, Session 1}
+
+\begin{document}
+\maketitle
+
+\section{Opener}
+    \vspace{20px}
+    \begin{questions}
+        \item Suppose a $4 \times 4$ matrix $U$ has $dim(row(U)) = 3$. What is its rank?
+        \item Suppose a $4 \times 4$ matrix $U$ has $dim(row(U)) = 1$. What is its nullity (the dimension of its null space)?
+        \item Loosely describe the process to find the null space of a matrix.
+    \end{questions}
+
+\vspace{40px}
+\section{Orthogonal Vectors}
+    
+    \vspace{20px}
+    \subsection{Conditions for Orthogonality}
+    Two vectors $\vec{u}, \vec{v}$ are orthogonal if their dot product is 0:
+    $$\vec{u} \cdot \vec{v} = 0$$
+    Subsequently, an \textit{orthogonal set of vectors} is a set $\{ \vec{u_1}, \vec{u_2}, \dots, \vec{u_k} \}$ where each vector is mutually orthogonal:
+    \begin{enumerate}
+        \item $\vec{u_j} \cdot \vec{u_j} = 0$ if $i \neq j$
+        \item $\vec{u_1} \neq \vec{0}$ for all $i$
+    \end{enumerate}
+    Additionally, the set is orthonormal if each such dot product is either 0 or 1 (when $i = j$).
+
+    Also, orthogonal vectors are definitionally linearly independent!
+
+    We can normalize an orthonormal set by dividing each vector by its magnitude. For example:
+    $$ \left \{ \dfrac{1}{||\vec{u_1}||} \vec{u_1},  \dfrac{1}{||\vec{u_2}||} \vec{u_2}, \dots, \dfrac{1}{||\vec{u_k}||} \vec{u_k} \right \}$$
+    This is just changing the vector to point in the same direction but with its magnitude coerced to 1.
+
+    \vspace{20px}
+    \begin{questions}
+        \item If the dot product of a vector times itself is 1, what does this mean in practice?
+        \item An orthogonal set/orthonormal set is a basis of the subspace $V = span \{ \vec{u_1}, \vec{u_2}, \dots, \vec{u_k} \}$.
+        \item Suppose $\{ \vec{u_1}, \vec{u_2} \} = \{ [1,1]^T, [-1, 1]^T \}$. Find whether this set is orthogonal and/or orthonormal.
+    \end{questions}
+    
+
+\pagebreak
+\section{Orthogonal Matrices}
+    
+    \vspace{20px}
+    An $n \times n$ matrix $U$ is orthogonal if $U U^T = U^T U = I$. Since $U$ is assumed to be square, it's enough to check that one of these
+    equalities to $I$ holds.
+
+    It turns out that the rows of an $n \times n$ orthogonal matrix form an \textit{orthonormal} basis of $\mathbb{R}^n$! Similarly, you can construct
+    an $n \times n$ orthogonal matrix using an orthonormal basis of $\mathbb{R}^n$.
+
+    The determinant of an orthogonal matrix is $\pm 1$.
+
+    \vspace{20px}
+    \begin{questions}
+        \item Is the matrix $U = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 0 & -1 \\ 0 & -1 & 0 \end{bmatrix}$ orthogonal? What is its determinant?
+    \end{questions}
+
+\pagebreak
+\section{Gram-Schmidt Process}
+    \vspace{20px}
+    (Live walkthrough using textbook)
+
+    \vspace{20px}
+    \begin{questions}
+        \item Find an orthogonal basis for the space spanned by $[-1, -2, 1]^T$ and $[0,1,-2]^T$.
+        \item Find an orthogonal basis for the column space of $\begin{bmatrix} 2 & 1 \\ 2 & 1 \\ 6 & 0 \end{bmatrix}$.
+        \item Find an orthonormal basis for the column space of $\begin{bmatrix} 2 & -1 \\ 8 & -1 \\ 0 & 2 \end{bmatrix}$.
+    \end{questions}
+
+\pagebreak
+\section{Closing}
+Let's finish up with a few conceptual questions!
+\begin{questions}
+    \item Suppose we have a set of three vectors with magnitudes of 1 in $\mathbb{R}^n$ such that $\vec{u_1}$ lies along the x-axis,
+    $\vec{u_2}$ lies along the z-axis, and $\vec{u_3}$ lies along the y-axis. What space do these vectors form a basis of?
+    Is the basis orthogonal? Orthonormal?
+    \item Suppose we construct a matrix using the same vectors, $U = \begin{bmatrix} \vec{u_1}^T \\ \vec{u_2}^T \\ \vec{u_3}^T \end{bmatrix}$. What
+    is the determinant of this matrix?
+\end{questions}
+
+\end{document}
