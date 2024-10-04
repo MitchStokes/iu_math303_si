@@ -1,0 +1,80 @@
+\documentclass[11pt]{exam}
+\usepackage{../commonheader}
+\usepackage{graphicx}
+
+\title{Linear Transformations}
+\date{Week 6, Session 2}
+
+\begin{document}
+\maketitle
+
+\section{Refresher}
+\vspace{20px}
+\begin{questions}
+    \item Is the following set of vectors orthogonal? Orthonormal?
+    $$ \left \{
+        \begin{bmatrix} \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \end{bmatrix},
+        \begin{bmatrix} -\frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \end{bmatrix}
+    \right \} $$
+    \item Let $U$ be an orthogonal matrix, and consider the set of vectors created using the rows of $U$. Which property does this set of vectors have?
+\end{questions}
+
+\vspace{20px}
+\section{Linear Transformations}
+    
+    An $m \times n$ matrix transforms an $n \times 1$ column vector into an $m \times 1$ column vector.
+
+    A transformation $T$ is linear if for all scalars $k_1, k_2$ and for all vectors $\vec{x_1}, \vec{x_2} \in \mathbb{R}^n$, the following is true:
+    $$ T(k_1 \vec{x_1} + k_2 \vec{x_2}) = k_1 T(\vec{x_1}) + k_2 T(\vec{x_2})$$
+
+    If you define $T$ as $T(\vec{x}) = A \vec{x}$ (that is, $\vec{x}$ multiplied by some matrix), then $T$ is linear.
+
+    \vspace{20px}
+    With that said, how can we find $A$ given only examples of $T$? (Live demo)
+
+    \begin{questions}
+        \item Find $A$ for the following transformation $T$:
+        $$T([1,0,0]^T) = [1,2]^T, T([0,1,0]^T) = [9,-3]^T, T([0,0,1]^T) = [1,1]^T$$
+        \item Find $A$ for the following transformation $T$:
+        $$T([1,1]^T) = [1,2]^T, T([0,-1]^T) = [3,2]^T$$
+    \end{questions}
+
+\pagebreak
+\section{Properties of Linear Transformations}
+\vspace{20px}
+\begin{enumerate}
+    \item $T$ preserves the zero vector. That is, $T(\vec{0}) = \vec{0}$.
+    \item $T$ preserves the negative of a vector. That is, $T(-\vec{x}) = -T(\vec{x})$.
+    \item $T$ preserves linear combinations. That is, $T(a_1\vec{x_1} + a_2\vec{x_2}) = a_1T(\vec{x_1}) + a_2T(\vec{x_2})$.
+\end{enumerate}
+
+\begin{questions}
+    \item Suppose $T$ is defined as follows:
+    $$T[1,3,1]^T = [4,4,0,-2]^T, T[4,0,5]^T = [4,5,-1,5]^T$$
+    Find $T[-7,3,-9]^T$.
+\end{questions}
+
+\vspace{20px}
+\subsection{Compositions of Transformations}
+
+Performing two transformations back-to-back is called a composition of transformations:
+$$(S \circ T)(\vec{x}) = S(T(\vec{x}))$$
+If $A$ is the matrix for $T$ and $B$ is the matrix for $S$, then the composed transformation $S \circ T$ has matrix $BA$.
+
+\vspace{20px}
+\subsection{Inverses of Transformations}
+
+Similarly, if a transformation $S$ serves to reverse the effect of transformation $T$ such that $(S \circ T)(\vec{x}) = (T \circ S)(\vec{x}) = \vec{x}$,
+then the transformations are \textit{inverses of each other}. Since the transformations are defined by multiplying a matrix by vectors, this is the
+exact same as matrix inverses!
+
+\pagebreak
+\section{Closing}
+\begin{questions}
+    \item Let $T: \mathbb{R}^2 \rightarrow \mathbb{R^2}$ be a linear transformation induced by the matrix $A = \begin{bmatrix} 2 & 3 \\ 3 & 4 \end{bmatrix}$.
+    How would we find $T$'s inverse? What would $T^{-1}$'s matrix be?
+    \item Suppose $T[1,0]^T = [2,3]^T$ and $T[0,1]^T = [3,-1]^T$. What is the matrix associated with $T$?
+\end{questions}
+
+
+\end{document}
